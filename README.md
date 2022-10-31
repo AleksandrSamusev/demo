@@ -32,8 +32,8 @@
 
 ### ER диаграмма
 
-![ER-диаграмма](C:\Users\samus\development\java\java-explore-with-me\java-explore-with-me\mainApp\src\main\resources\img\ER-diagramm(EWM).png)
+![ER-диаграмма](https://github.com/AleksandrSamusev/demo/blob/main/src/main/resources/static/img/ER-diagramm(EWM).png?raw=true)
 
 ### Диаграмма компонентов
 
-![диаграмма компонентов](C:\Users\samus\development\java\java-explore-with-me\java-explore-with-me\mainApp\src\main\resources\img\AppArch(last_last).png)
+![диаграмма компонентов](https://github.com/AleksandrSamusev/demo/blob/main/src/main/resources/static/img/AppArch(last_last).png?raw=true)
