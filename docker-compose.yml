@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  gateway:
+    build: ./clientApp
+    container_name: clientApp
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - server
+    environment:
+      - DEMO_SERVER_URL=http://server:9090
+
+  server:
+    build: ./serverApp
+    container_name: serverApp
+    ports:
+      - "9090:9090"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/demoBase
+
+  db:
+    image: postgres:13.7-alpine
+    container_name: db
+    ports:
+      - "7777:7777"
+    volumes:
+      - /var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=demoBase
+      - POSTGRES_USER=kitty
+      - POSTGRES_PASSWORD=kitty
