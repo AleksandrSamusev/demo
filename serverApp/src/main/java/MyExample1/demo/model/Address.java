@@ -16,16 +16,16 @@ public class Address {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "country")
+    @Column(name = "country", nullable = false)
     private String country;
 
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "street")
+    @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "house_number")
+    @Column(name = "house_number", nullable = false)
     private String houseNumber;
 
     @Column(name = "flat_number")

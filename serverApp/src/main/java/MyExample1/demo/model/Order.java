@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -21,10 +22,12 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-
-    @Column(name = "delivery_date")
+    @Column(name = "delivery_date", nullable = false)
     @Future
     private LocalDateTime deliveryDate;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderLine> lines;
 
 
 }
