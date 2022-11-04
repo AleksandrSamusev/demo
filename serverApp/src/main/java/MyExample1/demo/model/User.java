@@ -26,9 +26,9 @@ public class User {
     @Email
     private String email;
 
-    @Column(name = "phone")
+    @Column(name = "phone_number")
     @Pattern(regexp = "^\\d{10}$", message = "10 digits number expected")
-    private String phone;
+    private String phoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<Address> addresses;
