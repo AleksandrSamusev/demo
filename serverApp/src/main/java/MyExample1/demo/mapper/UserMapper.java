@@ -12,9 +12,9 @@ public class UserMapper {
     public static User toUser(UserDto userDto) {
         User user = new User();
         user.setUserId(userDto.getUserId());
-        user.setAddresses(userDto.getAddresses());
+        user.setAddresses(AddressMapper.toAddresses(userDto.getAddresses()));
         user.setEmail(userDto.getEmail());
-        user.setOrders(userDto.getOrders());
+        user.setOrders(OrderMapper.toOrders(userDto.getOrders()));
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setPhoneNumber(userDto.getPhoneNumber());
@@ -24,9 +24,9 @@ public class UserMapper {
     public static UserDto toUserDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setUserId(user.getUserId());
-        userDto.setAddresses(user.getAddresses());
+        userDto.setAddresses(AddressMapper.toAddressDtos(user.getAddresses()));
         userDto.setEmail(user.getEmail());
-        userDto.setOrders(user.getOrders());
+        userDto.setOrders(OrderMapper.toOrderDtos(user.getOrders()));
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
         userDto.setPhoneNumber(user.getPhoneNumber());
