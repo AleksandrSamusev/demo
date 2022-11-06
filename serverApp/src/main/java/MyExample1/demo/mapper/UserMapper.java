@@ -1,6 +1,7 @@
 package MyExample1.demo.mapper;
 
 import MyExample1.demo.dto.UserDto;
+import MyExample1.demo.dto.UserFullDto;
 import MyExample1.demo.model.User;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +13,7 @@ public class UserMapper {
     public static User toUser(UserDto userDto) {
         User user = new User();
         user.setUserId(userDto.getUserId());
-        user.setAddresses(AddressMapper.toAddresses(userDto.getAddresses()));
         user.setEmail(userDto.getEmail());
-        user.setOrders(OrderMapper.toOrders(userDto.getOrders()));
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setPhoneNumber(userDto.getPhoneNumber());
@@ -24,13 +23,31 @@ public class UserMapper {
     public static UserDto toUserDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setUserId(user.getUserId());
-        userDto.setAddresses(AddressMapper.toAddressDtos(user.getAddresses()));
         userDto.setEmail(user.getEmail());
-        userDto.setOrders(OrderMapper.toOrderDtos(user.getOrders()));
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
         userDto.setPhoneNumber(user.getPhoneNumber());
         return userDto;
+    }
+
+    public static UserFullDto toUserFullDto(User user) {
+        UserFullDto userFullDto = new UserFullDto();
+        userFullDto.setUserId(user.getUserId());
+        userFullDto.setFirstName(user.getFirstName());
+        userFullDto.setLastName(user.getLastName());
+        userFullDto.setEmail(user.getEmail());
+        userFullDto.setPhoneNumber(user.getPhoneNumber());
+        return userFullDto;
+    }
+
+    public static User toUserFromFull(UserFullDto userFullDto) {
+        User user = new User();
+        user.setUserId(userFullDto.getUserId());
+        user.setFirstName(userFullDto.getFirstName());
+        user.setLastName(userFullDto.getLastName());
+        user.setEmail(userFullDto.getEmail());
+        user.setPhoneNumber(userFullDto.getPhoneNumber());
+        return user;
     }
 
     public static List<User> toUsers(List<UserDto> userDtos) {
@@ -47,5 +64,13 @@ public class UserMapper {
             userDtos.add(toUserDto(user));
         }
         return userDtos;
+    }
+
+    public static List<UserFullDto> toUserFullDtos(List<User> users) {
+        List<UserFullDto> userFullDtos = new ArrayList<>();
+        for (User user : users) {
+            userFullDtos.add(toUserFullDto(user));
+        }
+        return userFullDtos;
     }
 }

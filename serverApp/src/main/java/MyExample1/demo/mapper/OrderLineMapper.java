@@ -12,7 +12,7 @@ public class OrderLineMapper {
     public static OrderLine toOrderLine(OrderLineDto orderLineDto) {
         OrderLine orderLine = new OrderLine();
         orderLine.setOrderLine_id(orderLineDto.getOrderLine_id());
-        orderLine.setOrder(orderLineDto.getOrder());
+        orderLine.setOrder(OrderMapper.toOrder(orderLineDto.getOrderDto()));
         orderLine.setProduct(orderLineDto.getProduct());
         orderLine.setQuantity(orderLineDto.getQuantity());
         orderLine.setMeasureUnit(orderLineDto.getMeasureUnit());
@@ -22,7 +22,7 @@ public class OrderLineMapper {
     public static OrderLineDto toOrderLineDto(OrderLine orderLine) {
         OrderLineDto orderLineDto = new OrderLineDto();
         orderLineDto.setOrderLine_id(orderLine.getOrderLine_id());
-        orderLineDto.setOrder(orderLine.getOrder());
+        orderLineDto.setOrderDto(OrderMapper.toOrderDto(orderLine.getOrder()));
         orderLineDto.setProduct(orderLine.getProduct());
         orderLineDto.setQuantity(orderLine.getQuantity());
         orderLineDto.setMeasureUnit(orderLine.getMeasureUnit());

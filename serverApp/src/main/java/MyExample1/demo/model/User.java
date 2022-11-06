@@ -4,8 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -26,15 +24,9 @@ public class User {
     @Email
     private String email;
 
-    @Column(name = "phone_number")
-    @Pattern(regexp = "^\\d{10}$", message = "10 digits number expected")
+    @Column(name = "phone_number", length = 10)
     private String phoneNumber;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Address> addresses;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Order> orders;
 
 
 }

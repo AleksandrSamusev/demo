@@ -1,13 +1,13 @@
 package MyExample1.demo.controller;
 
 import MyExample1.demo.dto.UserDto;
+import MyExample1.demo.dto.UserFullDto;
 import MyExample1.demo.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -23,5 +23,10 @@ public class UserController {
     @PostMapping
     public UserDto createUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
+    }
+
+    @GetMapping
+    List<UserFullDto> getUsers() {
+        return userService.getUsers();
     }
 }
