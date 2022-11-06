@@ -19,7 +19,29 @@ public class OrderController {
     }
 
     @PostMapping("/{userId}")
-    public OrderDto createOrder(@RequestBody OrderShortDto orderShortDto, @PathVariable Long userId) {
-        return orderService.createOrder(orderShortDto, userId);
+    public OrderDto createOrder(@RequestBody OrderShortDto orderShortDto) {
+        return orderService.createOrder(orderShortDto);
     }
+
+    @GetMapping
+    public Iterable<OrderDto> getAllOrders() {
+        return orderService.getAllOrders();
+    }
+
+    @GetMapping("/{orderId}")
+    public OrderDto getOrderById(@PathVariable Long orderId) {
+        return orderService.getOrderById(orderId);
+    }
+
+    @PatchMapping("/{orderId}")
+    public OrderDto updateOrderById(@PathVariable Long orderId, @RequestBody OrderDto orderDto) {
+        return orderService.updateOrderById(orderId, orderDto);
+    }
+
+    @DeleteMapping("/{orderId}")
+    public void deleteOrderById(@PathVariable Long orderId) {
+        orderService.deleteOrderById(orderId);
+    }
+
+
 }

@@ -32,4 +32,10 @@ public class ErrorHandler {
         return new ErrorResponse(e.getMessage());
     }
 
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleOrderNotFoundException(final OrderNotFoundException e) {
+        return new ErrorResponse(e.getMessage());
+    }
+
 }
