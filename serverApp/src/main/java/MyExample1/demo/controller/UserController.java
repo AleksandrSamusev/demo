@@ -29,4 +29,10 @@ public class UserController {
     List<UserFullDto> getUsers() {
         return userService.getUsers();
     }
+
+    @DeleteMapping("/{userId}")
+    public void deleteUserById(@PathVariable Long userId) {
+        userService.deleteUserById(userId);
+    }
+
 }

@@ -29,4 +29,10 @@ public class AddressController {
     List<AddressShortDto> getAddressByUserId(@PathVariable Long userId) {
         return addressService.getAddressByUserId(userId);
     }
+
+    @DeleteMapping("/{addressId}")
+    public void deleteAddressById(@PathVariable Long addressId) {
+        addressService.deleteAddressById(addressId);
+    }
+
 }

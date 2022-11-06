@@ -2,6 +2,7 @@ package MyExample1.demo.service;
 
 import MyExample1.demo.dto.UserDto;
 import MyExample1.demo.dto.UserFullDto;
+import MyExample1.demo.exception.UserNotFoundException;
 import MyExample1.demo.mapper.AddressMapper;
 import MyExample1.demo.mapper.OrderMapper;
 import MyExample1.demo.mapper.UserMapper;
@@ -42,6 +43,20 @@ public class UserServiceImpl implements UserService {
                     .getOrderByUserId(userFullDto.getUserId()))));
         }
         return dtos;
+    }
+
+    @Override
+    public void deleteUserById(Long userId) {
+        validateUserId(userId);
+        userRepository.deleteById(userId);
+    }
+
+    private void validateUserId(Long userId) {
+        if (!userRepository.existsById(userId)) {
+            log.info("User with id={} not found", userId);
+            throw new UserNotFoundException("User not found");
+
+        }
     }
 
 }

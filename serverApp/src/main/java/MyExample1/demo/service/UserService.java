@@ -8,4 +8,7 @@ public interface UserService {
     UserDto createUser(UserDto userDto);
 
     Iterable<UserFullDto> getUsers();
+
+    void deleteUserById(Long userId);
+
 }

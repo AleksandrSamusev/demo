@@ -10,4 +10,6 @@ public interface AddressService {
     AddressDto createAddressByUserId(AddressDto addressDto, Long userId);
 
     List<AddressShortDto> getAddressByUserId(Long userId);
+
+    void deleteAddressById(Long addressId);
 }
