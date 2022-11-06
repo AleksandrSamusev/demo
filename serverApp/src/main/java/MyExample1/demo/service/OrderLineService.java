@@ -3,7 +3,8 @@ package MyExample1.demo.service;
 import MyExample1.demo.dto.OrderLineDto;
 
 public interface OrderLineService {
-    OrderLineDto createOrderLine(OrderLineDto orderLineDto);
+
+    OrderLineDto createOrderLine(OrderLineDto orderLineDto, Long orderId, Long productId);
 
     Iterable<OrderLineDto> getAllOrderLines();
 

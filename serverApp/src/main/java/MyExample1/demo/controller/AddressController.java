@@ -25,6 +25,12 @@ public class AddressController {
         return addressService.createAddressByUserId(addressDto, userId);
     }
 
+    @GetMapping
+    public Iterable<AddressShortDto> getAllAddresses() {
+        return addressService.getAllAddresses();
+    }
+
+
     @GetMapping("/{userId}")
     List<AddressShortDto> getAddressByUserId(@PathVariable Long userId) {
         return addressService.getAddressByUserId(userId);

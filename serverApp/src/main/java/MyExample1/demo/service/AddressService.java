@@ -12,4 +12,7 @@ public interface AddressService {
     List<AddressShortDto> getAddressByUserId(Long userId);
 
     void deleteAddressById(Long addressId);
+
+    Iterable<AddressShortDto> getAllAddresses();
+
 }

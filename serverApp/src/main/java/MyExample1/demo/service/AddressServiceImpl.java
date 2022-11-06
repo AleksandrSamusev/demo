@@ -44,14 +44,20 @@ public class AddressServiceImpl implements AddressService {
         addressRepository.deleteById(addressId);
     }
 
+    @Override
+    public Iterable<AddressShortDto> getAllAddresses() {
+        return AddressMapper.toAddressShortDtos(addressRepository.findAll());
+    }
+
     private void validateAddressId(Long addressId) {
-        if(!addressRepository.existsById(addressId)) {
+        if (!addressRepository.existsById(addressId)) {
             log.info("Address with id = {} not found", addressId);
             throw new AddressNotFoundException("Address not found");
         }
     }
+
     private void validateUserId(Long userId) {
-        if(!userRepository.existsById(userId)) {
+        if (!userRepository.existsById(userId)) {
             log.info("User with id = {} not found", userId);
             throw new UserNotFoundException("User not found");
         }

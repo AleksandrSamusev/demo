@@ -6,6 +6,7 @@ import MyExample1.demo.exception.UserNotFoundException;
 import MyExample1.demo.mapper.AddressMapper;
 import MyExample1.demo.mapper.OrderMapper;
 import MyExample1.demo.mapper.UserMapper;
+import MyExample1.demo.model.User;
 import MyExample1.demo.repository.AddressRepository;
 import MyExample1.demo.repository.OrderRepository;
 import MyExample1.demo.repository.UserRepository;
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
             userFullDto.setAddressShortDtos(AddressMapper.toAddressShortDtos(addressRepository
                     .getAddressesByUserId(userFullDto.getUserId())));
             userFullDto.setOrderDtos((OrderMapper.toOrderDtos(orderRepository
-                    .getOrderByUserId(userFullDto.getUserId()))));
+                    .getOrdersByUserId(userFullDto.getUserId()))));
         }
         return dtos;
     }
@@ -49,6 +50,36 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(Long userId) {
         validateUserId(userId);
         userRepository.deleteById(userId);
+    }
+
+    @Override
+    public UserFullDto getUserById(Long userId) {
+        validateUserId(userId);
+        UserFullDto user = UserMapper.toUserFullDto(userRepository.getReferenceById(userId));
+        user.setAddressShortDtos(AddressMapper.toAddressShortDtos(addressRepository.getAddressesByUserId(userId)));
+        user.setOrderDtos(OrderMapper.toOrderDtos(orderRepository.getOrdersByUserId(userId)));
+        return user;
+    }
+
+    @Override
+    public UserDto updateUserById(Long userId, UserDto userDto) {
+        if (userRepository.existsById(userId)) {
+            User user = new User();
+            if (userDto.getEmail() != null) {
+                user.setEmail(userDto.getEmail());
+            }
+            if (userDto.getFirstName() != null) {
+                user.setFirstName(userDto.getFirstName());
+            }
+            if (userDto.getLastName() != null) {
+                user.setLastName(userDto.getLastName());
+            }
+            if (userDto.getPhoneNumber() != null) {
+                user.setPhoneNumber(userDto.getPhoneNumber());
+            }
+            return UserMapper.toUserDto(userRepository.save(user));
+        }
+        return UserMapper.toUserDto(userRepository.save(UserMapper.toUser(userDto)));
     }
 
     private void validateUserId(Long userId) {

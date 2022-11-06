@@ -17,13 +17,15 @@ public class OrderLineController {
         this.orderLineService = orderLineService;
     }
 
-    @PostMapping
-    public OrderLineDto createOrderLine(@RequestBody OrderLineDto orderLineDto) {
-        return orderLineService.createOrderLine(orderLineDto);
+    @PostMapping("/order/{orderId}/product/{productId}")
+    public OrderLineDto createOrderLine(@RequestBody OrderLineDto orderLineDto,
+                                        @PathVariable Long orderId,
+                                        @PathVariable Long productId) {
+        return orderLineService.createOrderLine(orderLineDto, orderId, productId);
     }
 
     @GetMapping
-    public Iterable<OrderLineDto>getAllOrderLines() {
+    public Iterable<OrderLineDto> getAllOrderLines() {
         return orderLineService.getAllOrderLines();
     }
 
