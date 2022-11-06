@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @Slf4j
 @RequestMapping("/products")
@@ -26,8 +24,13 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDto> getAllProducts() {
+    public Iterable<ProductDto> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/{productId}")
+    public ProductDto getProductById(@PathVariable Long productId) {
+        return productService.getProductById(productId);
     }
 
     @DeleteMapping("/{productId}")
@@ -39,6 +42,11 @@ public class ProductController {
     ResponseEntity<ProductDto> putProduct(@RequestBody ProductDto productDto,
                                           @PathVariable Long productId) {
         return productService.putProduct(productDto, productId);
+    }
+
+    @PatchMapping("/{productId}")
+    public ProductDto updateProduct(@RequestBody ProductDto productDto, @PathVariable Long productId) {
+        return productService.updateProduct(productDto, productId);
     }
 
 }
